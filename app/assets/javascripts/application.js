@@ -13,3 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require angular.min
+//= require angle-up
+//= require_tree ./angular
+
+$(function() {
+  var nameApp = angular.module('nameApp', []);
+  nameApp.controller('NameCtrl', function ($scope){
+      $scope.names = ['Larry', 'Curly', 'Moe'];
+      $scope.addName = function() {
+        $scope.names.push($scope.enteredName);
+        $scope.enteredName = '';
+      };
+      $scope.removeName = function(name) {
+        var i = $scope.names.indexOf(name);
+        $scope.names.splice(i, 1);
+      };
+    });
+});

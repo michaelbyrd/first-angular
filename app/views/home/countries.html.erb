@@ -1,0 +1,22 @@
+<div ng-app="countryApp" ng-controller="CountryCtrl">
+  <table>
+    <tr>
+      <th>Country</th>
+      <th>Population</th>
+    </tr>
+    <tr ng-repeat="country in countries">
+      <td>{{country.name}}</td>
+      <td>{{country.population}}</td>
+    </tr>
+  </table>
+</div>
+
+
+<script>
+var countryApp = angular.module('countryApp', []);
+countryApp.controller('CountryCtrl', function ($scope, $http){
+    $http.get('assets/countries.json').success(function(data) {
+      $scope.countries = data;
+      });
+    });
+</script>

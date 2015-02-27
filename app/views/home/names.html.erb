@@ -1,0 +1,26 @@
+<div ng-app="nameApp" ng-controller="NameCtrl">
+  <ul>
+    <li ng-repeat="name in names">{{name}}
+      <a href="" ng-click="removeName(name)">X</a>
+    </li>
+  </ul>
+  <form ng-submit="addName()">
+    <input type="text" ng-model="enteredName">
+    <input type="submit" value="add">
+  </form>
+</div>
+
+<script>
+var nameApp = angular.module('nameApp', []);
+nameApp.controller('NameCtrl', function ($scope){
+    $scope.names = ['Larry', 'Curly', 'Moe'];
+    $scope.addName = function() {
+      $scope.names.push($scope.enteredName);
+      $scope.enteredName = '';
+    };
+    $scope.removeName = function(name) {
+      var i = $scope.names.indexOf(name);
+      $scope.names.splice(i, 1);
+    };
+    });
+</script>
